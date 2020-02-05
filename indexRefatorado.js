@@ -1,6 +1,6 @@
 const PETSHOP = "Petshop DH";
 
-console.log("** " + PETSHOP + " **");
+console.log(`**  ${PETSHOP} **`);
 
 // arrays de objetos pets
 let pets = [{
@@ -35,37 +35,37 @@ let pets = [{
     genero: "Macho",
     servicos: [],
     vacinado: false
-    }];
+}];
 
 const anoDeNascimento = pet => 2020 - pet.idade;
 
 anoDeNascimento(pets);
 
-const vacinarPet = pet => {
-    for(let i = 0; i<pet.length; i++){
-        if(!pet[i].vacinado){
+const vacinarPet = () => {
+    pets.forEach(pet => {
+        if (!pet.vacinado) {
             console.log("não está vacinado");
-            pet[i].vacinado = true;
+            pet.vacinado = true;
             console.log("Agora está vacinado");
-        }else{
+        } else {
             console.log("está vacinado");
         }
-    }
+    });
 }
 
-vacinarPet(pets);
 
-const exibePets = pet =>{
-    for(let i = 0; i<pet.length; i++){
+//vacinarPet(pets);
+
+const exibePets = () => {
+    for (let pet of pets) {
         console.log("-----------------------------------")
-        console.log("nome: " + pet[i].nome);
-        console.log("Tipo: " + pet[i].tipo);
-        console.log("Raca: " + pet[i].raca);
-        console.log("Idade: " + pet[i].idade);
-        console.log("Genero: " + pet[i].genero);
-        console.log("Serviço: " + pet[i].servicos);
-        console.log("Vacinado: " + (pets[i].vacinado ? "Sim": "Não"));
-        
+        console.log("nome: " + pet.nome);
+        console.log("Tipo: " + pet.tipo);
+        console.log("Raca: " + pet.raca);
+        console.log("Idade: " + pet.idade);
+        console.log("Genero: " + pet.genero);
+        console.log("Serviço: " + pet.servicos);
+        console.log("Vacinado: " + (pets.vacinado ? "Sim" : "Não"));
     }
 }
 
@@ -82,27 +82,26 @@ const validarDados = dadosPet => {
 };
 
 const adicionarPets = novoPet => {
-    if(typeof novoPet =="object" && validarDados(novoPet)){
-    pets.push(novoPet);
-    novoPet.nome = novoPet.nome.toString();
-    novoPet.idade = parseInt(novoPet.idade);
-    if(!novoPet.servicos){
-        novoPet.servicos = [];
-    }
-    console.log("Pet adicionado com sucesso")
-    }
-    else {
+    if (typeof novoPet == "object" && validarDados(novoPet)) {
+        pets.push(novoPet);
+        novoPet.nome = novoPet.nome.toString();
+        novoPet.idade = parseInt(novoPet.idade);
+        if (!novoPet.servicos) {
+            novoPet.servicos = [];
+        }
+        console.log("Pet adicionado com sucesso")
+    } else {
         console.log("Ops, insira um pet valido");
     }
 };
-    
+
 adicionarPets({
-    nome:"Spanish", 
-    tipo: "Cão", 
-    raca: "CockerSpanel", 
-    idade: 8, 
-    genero: "Macho", 
-    servicos: ["banho","tosa"], 
+    nome: "Spanish",
+    tipo: "Cão",
+    raca: "CockerSpanel",
+    idade: 8,
+    genero: "Macho",
+    servicos: ["banho", "tosa"],
     vacidado: true
 });
 
@@ -121,45 +120,48 @@ const cortarUnhasPet = pet => {
     console.log("Unhas cortadas!");
 };
 
-const atenderPet = (pet, servicos) => {
-    console.log("Bem vindo, " + pet.nome);
-    for (i = 0; i<servicos.length; i++){
-        servicos[i](pet);
+const atenderPet = (pet, ...servicos) => {
+    console.log(`Bem vindo, ${pet.nome}`);
+    for (let servico of servicos) {
+        servico(pet);
     }
-
-    const pagar = () => {
-        console.log ("Pagamento realizado com sucesso");
-    }
-    pagar();
-   console.log("volte Sempre");
-}
-atenderPet(pets[0], [darBanhoPet, cortarUnhasPet]);
-
-
- 
-console.log(pets[0]);
-
-const contarVacinados = (pet) => {
-    let contadorVacinados = 0;
-    let contadorNaoVacinados = 0;
-    for (let i = 0; i < pet.length; i++) {
-       pet[i].vacinado === true? contadorVacinados++ : contadorNaoVacinados++;
-    }
-    console.log('Foram encontrados ' + contadorNaoVacinados + ' pets não vacinados');
-    console.log('Foram encontrados ' + contadorVacinados + ' pets vacinados');
 }
 
-const campanhaVacina = pet => {
+const pagar = () => {
+    console.log("Pagamento realizado com sucesso");
+}
+pagar();
+console.log("volte Sempre");
+
+atenderPet(pets[0], darBanhoPet, cortarUnhasPet);
+
+
+
+const contarVacinados = () => {
+    let vacinados = pets.filter(pet => pet.vacinado).length;
+    let naoVacinados = pets.filter(pet => !pet.vacinado).length;
+
+    console.log(`Há ${vacinados} Vacinados
+Há ${naoVacinados} Não Vacinados`);
+}
+contarVacinados(pets);
+
+const campanhaVacina = () => {
     let contador = 0;
-    for (let i = 0; i < pet.length; i++) {
-        if(!pet[i].vacinado) contador++ ;
-        vacinarPet(pet[i]);
+    for (let pet of pets) {
+        if (!pet.vacinado) {
+            contador++;
+            vacinarPet(pet);
+        }
     }
-    console.log(contador + ' pet(s) foram vacinados nessa campanha!');
+    console.log(`${contador} pet(s) foram vacinados nessa campanha!`);
 }
 contarVacinados(pets);
 campanhaVacina(pets);
 
+const buscarPetPeloNome = (pet, nome) => {
+    let consultaNome = pet.filter(oPet => oPet.nome === nome).length;
+    (consultaNome >= 1) ? console.log(`O nome foi encontrado em ${consultaNome} ocorrencias`): console.log(`nome nao encontado`);
+}
 
-
-
+buscarPetPeloNome(pets, "Dutch");
