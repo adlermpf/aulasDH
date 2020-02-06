@@ -120,55 +120,59 @@ const cortarUnhasPet = pet => {
 };
 
 const buscarPetPeloNome = (nome) => {
-    let consultaIndiceDoNome = pets.indexOf(nome);
-    return consultaIndiceDoNome;
-}
-
-const atenderPet = (nome, ...servicos) => {
-    
-    
-    console.log(`Bem vindo, ${nome}`);
-
-    for (let servico of servicos) {
-        servico(pet);
+    if(pets.filter(oPet => oPet.nome === nome)){
+        return pets.findIndex(oPet => oPet.nome === nome);
+    }else{
+        console.log(`${nome} não cadastrado.`);
     }
 }
 
-const pagar = () => {
-    console.log("Pagamento realizado com sucesso");
-}
-pagar();
-console.log("volte Sempre");
 
-atenderPet(pets[0], darBanhoPet, cortarUnhasPet);
+// const atenderPet = (nome, ...servicos) => {
 
+    
+//     console.log(`Bem vindo, ${nome}`);
 
-
-// const contarVacinados = () => {
-//     let vacinados = pets.filter(pet => pet.vacinado).length;
-//     let naoVacinados = pets.filter(pet => !pet.vacinado).length;
-
-//     console.log(`Há ${vacinados} Vacinados
-// Há ${naoVacinados} Não Vacinados`);
-// }
-// contarVacinados(pets);
-
-// const campanhaVacina = () => {
-//     let contador = 0;
-//     for (let pet of pets) {
-//         if (!pet.vacinado) {
-//             contador++;
-//             vacinarPet(pet);
-//         }
+//     for (let servico of servicos) {
+//         servico(pet);
 //     }
-//     console.log(`${contador} pet(s) foram vacinados nessa campanha!`);
 // }
-// contarVacinados(pets);
-// campanhaVacina(pets);
 
-const buscarPetPeloNome = (nome) => {
-    let consultaNome = pets.filter(oPet => oPet.nome === nome).length;
-    (consultaNome >= 1) ? console.log(`O nome foi encontrado em ${consultaNome} ocorrencias`): console.log(`nome nao encontado`);
-}
+// const pagar = () => {
+//     console.log("Pagamento realizado com sucesso");
+// }
+// pagar();
+// console.log("volte Sempre");
 
-buscarPetPeloNome("Dutch");
+// atenderPet(pets[0], darBanhoPet, cortarUnhasPet);
+
+
+
+// // const contarVacinados = () => {
+// //     let vacinados = pets.filter(pet => pet.vacinado).length;
+// //     let naoVacinados = pets.filter(pet => !pet.vacinado).length;
+
+// //     console.log(`Há ${vacinados} Vacinados
+// // Há ${naoVacinados} Não Vacinados`);
+// // }
+// // contarVacinados(pets);
+
+// // const campanhaVacina = () => {
+// //     let contador = 0;
+// //     for (let pet of pets) {
+// //         if (!pet.vacinado) {
+// //             contador++;
+// //             vacinarPet(pet);
+// //         }
+// //     }
+// //     console.log(`${contador} pet(s) foram vacinados nessa campanha!`);
+// // }
+// // contarVacinados(pets);
+// // campanhaVacina(pets);
+
+// const buscarPetPeloNome = (nome) => {
+//     let consultaNome = pets.filter(oPet => oPet.nome === nome).length;
+//     (consultaNome >= 1) ? console.log(`O nome foi encontrado em ${consultaNome} ocorrencias`): console.log(`nome nao encontado`);
+// }
+
+// buscarPetPeloNome("Dutch");
