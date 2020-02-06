@@ -120,15 +120,14 @@ const cortarUnhasPet = pet => {
 };
 
 const buscarPetPeloNome = (nome) => {
-    let consultaNome = pets.filter(oPet => oPet.nome === nome);
-    return consultaNome.pop();
+    let consultaIndiceDoNome = pets.indexOf(nome);
+    return consultaIndiceDoNome;
 }
 
 const atenderPet = (nome, ...servicos) => {
     
     
-    
-    console.log(`Bem vindo, ${pet.nome}`);
+    console.log(`Bem vindo, ${nome}`);
 
     for (let servico of servicos) {
         servico(pet);
