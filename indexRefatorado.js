@@ -123,28 +123,30 @@ const buscarPetPeloNome = (nome) => {
     if(pets.filter(oPet => oPet.nome === nome)){
         return pets.findIndex(oPet => oPet.nome === nome);
     }else{
-        console.log(`${nome} não cadastrado.`);
+         console.log(`${nome} não cadastrado.`);
     }
 }
 
 
 const atenderPet = (nome, ...servicos) => {
     console.log(`Bem vindo, ${nome}`);
-
-    let indice = buscarPetPeloNome(nome);
-    
-    for (let servico of servicos) {
-        servico(pet[indice]);
+    if(pets.filter(oPet => oPet.nome === nome).length > 0){
+        let indice = buscarPetPeloNome(nome);
+        for (let servico of servicos) {
+            servico(pets[indice]);
+        }
+    } else {
+        console.log("Não foi posivel realizar os serviços o pet não está cadastrado")
     }
 }
 
-// const pagar = () => {
-//     console.log("Pagamento realizado com sucesso");
-// }
-// pagar();
-// console.log("volte Sempre");
+const pagar = () => {
+    console.log("Pagamento realizado com sucesso");
+}
+pagar();
+console.log("volte Sempre");
 
-// atenderPet(pets[0], darBanhoPet, cortarUnhasPet);
+atenderPet("x", darBanhoPet, cortarUnhasPet);
 
 
 
