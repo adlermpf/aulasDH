@@ -146,35 +146,28 @@ const pagar = () => {
 pagar();
 console.log("volte Sempre");
 
-atenderPet("x", darBanhoPet, cortarUnhasPet);
+atenderPet("Dutch", darBanhoPet, cortarUnhasPet);
 
 
 
-// // const contarVacinados = () => {
-// //     let vacinados = pets.filter(pet => pet.vacinado).length;
-// //     let naoVacinados = pets.filter(pet => !pet.vacinado).length;
+const contarVacinados = () => {
+    let vacinados = pets.filter(pet => pet.vacinado).length;
+    let naoVacinados = pets.filter(pet => !pet.vacinado).length;
 
-// //     console.log(`Há ${vacinados} Vacinados
-// // Há ${naoVacinados} Não Vacinados`);
-// // }
-// // contarVacinados(pets);
+    console.log(`Há ${vacinados} Vacinados
+Há ${naoVacinados} Não Vacinados`);
+}
+contarVacinados(pets);
 
-// // const campanhaVacina = () => {
-// //     let contador = 0;
-// //     for (let pet of pets) {
-// //         if (!pet.vacinado) {
-// //             contador++;
-// //             vacinarPet(pet);
-// //         }
-// //     }
-// //     console.log(`${contador} pet(s) foram vacinados nessa campanha!`);
-// // }
-// // contarVacinados(pets);
-// // campanhaVacina(pets);
-
-// const buscarPetPeloNome = (nome) => {
-//     let consultaNome = pets.filter(oPet => oPet.nome === nome).length;
-//     (consultaNome >= 1) ? console.log(`O nome foi encontrado em ${consultaNome} ocorrencias`): console.log(`nome nao encontado`);
-// }
-
-// buscarPetPeloNome("Dutch");
+const campanhaVacina = () => {
+    let contador = 0;
+    for (let pet of pets) {
+        if (!pet.vacinado) {
+            contador++;
+            vacinarPet(pet);
+        }
+    }
+    console.log(`${contador} pet(s) foram vacinados nessa campanha!`);
+}
+contarVacinados(pets);
+campanhaVacina(pets);
