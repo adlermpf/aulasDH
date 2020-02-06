@@ -128,15 +128,15 @@ const buscarPetPeloNome = (nome) => {
 }
 
 
-// const atenderPet = (nome, ...servicos) => {
+const atenderPet = (nome, ...servicos) => {
+    console.log(`Bem vindo, ${nome}`);
 
+    let indice = buscarPetPeloNome(nome);
     
-//     console.log(`Bem vindo, ${nome}`);
-
-//     for (let servico of servicos) {
-//         servico(pet);
-//     }
-// }
+    for (let servico of servicos) {
+        servico(pet[indice]);
+    }
+}
 
 // const pagar = () => {
 //     console.log("Pagamento realizado com sucesso");
